@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     # 도메인/
-    path('about_me/', views.about_me),
-    path('', views.landing),
+    path('aboutme/', views.about_me),     # /aboutme/
+    path('potpolio/', views.potpolio),    # /potpolio/
+    path('', views.landing),              # /
 ]

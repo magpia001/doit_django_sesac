@@ -1,49 +1,12 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <!-- https://getbootstrap.com/docs/4.6/getting-started/introduction/ -->
-    <!-- https://startbootstrap.com/ -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" >
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
-    <title>{{ post.title }} - Blog</title>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">COZLAB</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">AboutMe <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Potpolio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/blog/">Blog</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                Dropdown link
-                </a>
-                <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            </ul>
-        </div>
-    </div>
-</nav>  
-<!-- Page content-->
-<div class="container mt-5">
+
+{% block head %} 
+<link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
+<title>{{ post.title }} - Blog</title>
+{% endblock head %} 
+
+{% block contents %}
     <div class="row">
         <div class="col-lg-8">
             <!-- Post content-->
@@ -167,10 +130,9 @@
             </div>
         </div>
     </div>
-</div>
-</body>
-</html>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock contents %}
+
+{% block script %}
 <!-- Core theme JS-->
 <script src="{% static 'blog/js/scripts.js' %}"></script>
+{% endblock script %}

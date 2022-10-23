@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>IT 전문강사</title>
-</head>
-<body>
-    <nav>
-        <a href="/blog/">Blog</a>
-        <a href="/about_me/">About me</a>
-    </nav> 
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %} 
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title>{{ post.title }} COZLAB 홈 </title>
+{% endblock head %} 
+
+{% block contents %}
 
     <h1>안녕하세요. COZLAB 입니다.</h1>
+    <div class="mb-3 mt-3">
+        <img src="{% static 'images/home.jpg' %}" alt="배경">
+    </div>
     <h2>이력</h2>
-    <h2>포트폴리오</h2>
     <h3>아직 공사중</h3>
-</body>
-</html>
+{% endblock contents %}
