@@ -1,6 +1,7 @@
-from django.views.generic import ListView, DetailView, CreateView
-from .models import Post, Category, Tag
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Post, Category, Tag
 
 # Create your views here.
 # def index(request):
@@ -31,9 +32,17 @@ class PostDetail(DetailView):
         context['no_category_post_count'] = Post.objects.filter(category=None).count()
         return context
 
-class PostCreate(CreateView):
+class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category']
+
+    def form_valid(self, form):
+        current_user = self.request.user
+        if current_user.is_authenticated:
+            form.instance.author = current_user
+            return super(PostCreate, self).form_valid(form)
+        else: # 로그인을 안했을 때 blog 리스트로
+            return redirect('/blog/')
 
 def category_page(request, slug):
     if slug == 'no_category':
