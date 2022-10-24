@@ -1,27 +1,16 @@
 version: '3'
 
 services:
-  nginx:
-    build: ./nginx
-    volumes:
-      - static_volume:/usr/src/app/_static
-      - media_volume:/usr/src/app/_media
-    ports:
-      - 80:80
-    depends_on:
-      - web
   web:
     build: .
     # command: python manage.py runserver 0.0.0.0:8000
     command: gunicorn doit_django.wsgi:application --bind 0.0.0.0:8000
     volumes: # 현재 폴더를 /usr/src/app와 연결함.
-      - static_volume:/usr/src/app/_static
-      - media_volume:/usr/src/app/_media
       - ./:/usr/src/app/
-    expose:
-      - 8000
+    ports:
+      - 8000:8000
     env_file:
-      - ./envs/.env.prod
+      - ./envs/.env.dev
     depends_on:
       - db
   db:
@@ -29,10 +18,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - ./envs/.env.prod.db
+      - ./envs/.env.db
 volumes:
   postgres_data:
-  static_volume:
-  media_volume:
   
     
