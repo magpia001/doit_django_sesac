@@ -1,0 +1,5 @@
+google Oauth 클라이언트 정보
+ID:
+614644550394-i85b080o3iv0h6023r8196olma8g88p0.apps.googleusercontent.com
+PW:
+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
