@@ -78,7 +78,7 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
         else:
             raise PermissionDenied
 
-    # post 수정 정보 및 tag 정보 가져오기        
+    # post 수정을 위한 해당 정보 및 tag 정보 가져오기        
     def get_context_data(self, **kwargs):
         context = super(PostUpdate, self).get_context_data()
         if self.object.tags.exists():
