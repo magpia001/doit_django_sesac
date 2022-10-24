@@ -11,6 +11,10 @@
         {% if category %}
         <span class="badge badge-secondary">{{ category }}</span>
         {% endif %}
+        {% if tag %}
+        <span class="badge badge-light"><i class="bi bi-tags-fill"></i>{{ tag }} ({{ tag.post_set.count }})</span>
+        {% endif %}
+
     </h1>
     <div class="row">
         <!-- Blog entries-->
@@ -35,6 +39,15 @@
                     {% endif %}
                     <h2 class="card-title">{{ p.title }}</h2>
                     <p class="card-text">{{ p.content }}</p>
+                    <!-- tag 추가 -->
+                    {% if p.tags.exists %}
+                        <i class="bi bi-tags-fill"></i>
+                        {% for tag in p.tags.iterator%}
+                            <a href="{{ tag.get_absolute_url }}"><span class="badge badge-light">{{ tag }}</span></a>
+                        {% endfor %}
+                        <br>
+                        <br>
+                    {% endif %}
                     <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">

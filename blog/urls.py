@@ -11,6 +11,7 @@ urlpatterns = [
     path('<int:pk>/', views.PostDetail.as_view()),
 
     path('category/<str:slug>/', views.category_page),
+    path('tag/<str:slug>/', views.tag_page),
     
     # 도메인/about_me/
 ]
