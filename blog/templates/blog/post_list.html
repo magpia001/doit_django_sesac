@@ -6,11 +6,16 @@
 <title>{{ post.title }} - Blog</title>
 {% endblock head %} 
 
-{% block contents %}
-    <h1>블로그</h1>
+{% block main_area %}
+    <h1>Blog
+        {% if category %}
+        <span class="badge badge-secondary">{{ category }}</span>
+        {% endif %}
+    </h1>
     <div class="row">
         <!-- Blog entries-->
         <div class="col-lg-8">
+        {% if post_list.exists %}    
             <!-- Featured blog post-->
             {% for p in post_list %}
             <!-- Blog Post -->
@@ -50,10 +55,11 @@
                     <li class="page-item"><a class="page-link" href="#!">Older</a></li>
                 </ul>
             </nav>
+        {% endif %}
         </div>
         {% include './blog_side.html' %}
     </div>
-{% endblock contents %}
+{% endblock main_area %}
 
 {% block script %}
 <!-- Core theme JS-->
